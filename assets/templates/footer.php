@@ -3,5 +3,3 @@
     <span class="text-center text-muted">© Assambler School Of Software Engineering 2020</span>
   </div>
 </footer>
-</body>
-</html>
