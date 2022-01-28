@@ -1,6 +1,20 @@
-// var resp = await getJSONData();
+const ENDPOINT =
+  document.getElementById("mainNav").dataset["base_url"] + "employee";
 
+
+//   $(() => {
+ var baseUrl = document.getElementById("mainNav").dataset["base_url"];
+//     // const EMAIL_REGX = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+//     // const PCODE_REGX = /^[0-9]{5,9}$/;
+//     // const PHONE_REGX = /^[0-9]{9,12}$/;
+//     const onRowClick = (args) => {
+//       let id = args.item.id;
+//       location.href = `${baseUrl}employee/show/${id}`;
+//     };
+//   })
 $('#grid_table').jsGrid({
+
+    
 
     width: "100%",
     height: "600px",
@@ -14,25 +28,38 @@ $('#grid_table').jsGrid({
     pageButtonCount: 5,
     deleteConfirm: "Do you really want to delete the Client?",
   
-    rowClick: function(args){
-      console.log(args);
-      $idValue = args["item"].id;
-      console.log($idValue);
-      window.location.assign("./../src/employee.php?id=" + $idValue);
-    },
+    // rowClick: function(args){
+    //   console.log(args["item"].id);
+    //   $idValue = toString(args["item"].id);
+    //   console.log($idValue);
+    //   window.location.assign("./../src/employee.php?id=" + $idValue);
+    // },
+
+    rowClick: (args) => {
+        let id = args.item.id;
+        location.href = `${baseUrl}employee/show/${id}`;
+      },
+
+    // rowClick: onRowClick,
   
     controller: {
-      loadData: function(filter) {
-        return $.ajax({
-          type: "GET",
-          url: "../src/library/employeeController.php",
-          data: filter,
-          dataType: "JSON"
-          // success: function(response){
-          //   console.log("GET: ", response);
-          // }
-        });
+        loadData: () =>
+    fetch(ENDPOINT + "/getEmployees", {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
       },
+    }).then((response) => response.json()),
+    //   loadData: function(filter) {
+    //     return $.ajax({
+    //       type: "GET",
+    //       url: ENDPOINT + "/getEmployees",
+    //       data: filter,
+    //       dataType: "JSON"
+    //       // success: function(response){
+    //       //   console.log("GET: ", response);
+    //       // }
+    //     });
+    //   },
       insertItem: function(item) {
         return $.ajax({
           type: "POST",
@@ -118,17 +145,3 @@ $('#grid_table').jsGrid({
     ]
   
   });
-  
-  /*--CHANGE THE HEADER---*/
-  let url = window.location.href;
-  
-  const tabs = ["dashboard", "employee"];
-  
-  tabs.forEach(e => {
-    if (url.indexOf(e + ".php") !== -1) {
-      setActive("tab-" + e); //usamos el id que esta en el dashboard
-    }
-  });
-  function setActive(id){
-    document.getElementById(id).style.fontWeight = "bold";
-  };

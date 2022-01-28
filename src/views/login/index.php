@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <?PHP
-include_once 'assets/templates/header.php';
+ include_once "assets/templates/NmHeaders.php";
+ include_once "assets/templates/header.php";
 ?>
+ <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/login.css">
+ <title>Login</title>
 </head>
 
 <body>
@@ -25,12 +28,12 @@ include_once 'assets/templates/header.php';
     </a>
       </div>
       <div class="card-body mt-3">
-        <form name="login" action="./src/library/loginController.php" method="POST">
+        <form name="login" action="<?php echo BASE_URL ?>login/loginUser" method="POST">
           <div class="input-group form-group mt-3">
-            <input type="text" class="form-control text-center p-3" placeholder="Email address" name="email">
+            <input type="text" class="form-control text-center p-3" placeholder="Email address" name="email" value="admin@AssemblerSchool.com">
           </div>
           <div class="input-group form-group mt-3">
-            <input type="password" class="form-control text-center p-3" placeholder="Password" name="pass">
+            <input type="password" class="form-control text-center p-3" placeholder="Password" name="password" value="123456">
           </div>
           
           <div class="text-center">
