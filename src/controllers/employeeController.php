@@ -18,6 +18,16 @@ class EmployeeController extends Controller
         $this->view->employee = $this->model->getEmployee($id);
         $this->view->render("employee/employee");
     }
+
+    function updateEmployee()
+    {   
+
+        //$employee = $_POST;
+        $formU = $_POST;
+        print_r($employee);
+        $this->view->employee = $this->model->updateEmployee($employee);
+        $this->view->render("employee/dashboard");
+    }
     
 /** THE FOLLOWING METHODS WILL BE CALLED THROUGH AJAX */
 

@@ -50,6 +50,7 @@
   ?>
   <div class="container-employee">
     <?php
+    print BASE_URL;
     //
       // if (isset($this->employee["id"])){
       //   echo '<form class="row g-3 needs-validation" action= <?= CONTROLLERS ? > Employee/modifyEmployee method="POST" novalidate>';
@@ -58,17 +59,21 @@
       //   echo "<form class='row g-3 needs-validation' action='library/employeeController.php?flag=1' method='POST' novalidate>";
       // }
     ?>
-    <form class="row g-3 needs-validation" id="formEditEmployee" data-employee=<?= $this->employee['id'] ?> action= "" method="POST" novalidate>
+
+    <form class="row g-3 needs-validation" id="formEditEmployee" data-employee=<?= $this->employee['id'] ?> action= "../../employee/updateEmployee" method="POST" novalidate>
   <div class="col-md-6">
     <label for="validationCustom01" class="form-label">Name</label>
     <input type="text" class="form-control" id="validationCustom01" name="name" <?php if (isset($name)){echo "value='$name'";} ?> placeholder="name" required>
+    
     <div class="valid-feedback">
       Looks good!
     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom02" class="form-label">Last Name</label>
+    <label for="validationCustom02" class="hidden form-label">Last Name</label>
     <input type="text" class="form-control" id="validationCustom02" name="lastName" <?php if (isset($lastName)){echo "value='$lastName'";} ?> placeholder="last name" required>
+
+    <input type="text" class="form-control" name="id" <?php if (isset($lastName)){echo "value='$idvalue'";} ?> >
     <div class="valid-feedback">
       Looks good!
     </div>
