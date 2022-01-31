@@ -11,17 +11,18 @@ $(() => {
   };
 
   $("#grid_table").jsGrid({
-    height: "auto",
-    width: "100%",
 
+    width: "100%",
+    height: "600px",
+    filtering: false,
     inserting: true,
+    editing: true,
+    sorting: true,
     paging: true,
     autoload: true,
-
     pageSize: 10,
-    pageButtonCount: 3,
-
-    deleteConfirm: "Do you really want to delete the Employee?",
+    pageButtonCount: 5,
+    deleteConfirm: "Do you really want to delete the Client?",
 
     controller: controller,
 

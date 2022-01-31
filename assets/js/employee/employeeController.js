@@ -2,10 +2,11 @@ const ENDPOINT =
   document.getElementById("mainNav").dataset["base_url"] + "employee";
 
 export const controller = {
-  loadData: () =>
+  loadData: (filter) =>
     fetch(ENDPOINT + "/getEmployees", {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
+        data: filter,
       },
     }).then((response) => response.json()),
 

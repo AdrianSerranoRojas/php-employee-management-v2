@@ -9,6 +9,9 @@
               <li class="nav-item" id="tab-employee">
               <a class="nav-link" href="./employee.php">New Employee</a></li>
             </ul>
+            <form action="<?= BASE_URL ?>login/logoutUser" method="post" class="form-inline ml-auto">
+            <button class="btn btn-outline-primary ml-auto my-2 my-sm-0" type="submit">Logout</button>
+        </form>
         </nav>
     </div>
 </header>
