@@ -7,7 +7,7 @@ class EmployeeController extends Controller
      parent::__construct();
      $this->loadModel("employee");
     }
-
+/** THE FOLLOWING METHODS ARE INTENDED TO RENDER A VIEW */
     function dashboard()
     {
         $this->view->render("employee/dashboard");
@@ -18,11 +18,21 @@ class EmployeeController extends Controller
         $this->view->employee = $this->model->getEmployee($id);
         $this->view->render("employee/employee");
     }
-
+    
+/** THE FOLLOWING METHODS WILL BE CALLED THROUGH AJAX */
 
     function getEmployees()
     {
         echo json_encode($this->model->getEmployees());
     }
 
+    function modifyEmployee()
+    {
+        $employee = json_decode(file_get_contents("php://input"), true);
+        if (!isset($employee['id'])) {
+            $this->throw_error(401, "Bad Request");
+        }
+        $newEmployee = $this->model->updateEmployee($employee);
+        echo json_encode($newEmployee);
+    }
 }

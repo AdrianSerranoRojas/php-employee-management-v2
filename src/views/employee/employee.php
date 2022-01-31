@@ -20,44 +20,45 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
    <!--JS JSgrid-->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
-  <script src="../assets/js/index.js" defer></script>
+  <!-- <script src="../assets/js/index.js" defer></script> -->
+  <script type="module" src="<?= BASE_URL ?>assets/js/employee/employee.js"></script>
 </head>
 <body>
 <?php
   include BASE_PATH . '/assets/templates/navbar.php';
-
+  // $newCollections = $this->employee;
+  // print_r($newCollections);
 // GET the variables from the employee wich we want to edit
-  if(isset($_GET["id"])){
-    $idvalue = $_GET["id"];
-    $newCollections = json_decode(file_get_contents('../resources/employees.json'), true);
+  if(isset($this->employee["id"])){
+    $idvalue = $this->employee["id"];
+    $newCollections = $this->employee;
+    //$newCollections = json_decode(file_get_contents('../resources/employees.json'), true);
 
-    for ($i=0; $i < count($newCollections) ; $i++) {
-
-      if ($newCollections[$i]['id'] == $idvalue){
-        $name = $newCollections[$i]['name'];
-        $lastName = $newCollections[$i]['lastName'];
-        $email = $newCollections[$i]['email'];
-        $gender = $newCollections[$i]['gender'];
-        $age = $newCollections[$i]['age'];
-        $streetA = $newCollections[$i]['streetAddress'];
-        $city = $newCollections[$i]['city'];
-        $state = $newCollections[$i]['state'];
-        $postalCode = $newCollections[$i]['postalCode'];
-        $phoneNum = $newCollections[$i]['phoneNumber'];
+      if ($newCollections['id'] == $idvalue){
+        $name = $newCollections['name'];
+        $lastName = $newCollections['lastName'];
+        $email = $newCollections['email'];
+        $gender = $newCollections['gender'];
+        $age = $newCollections['age'];
+        $streetA = $newCollections['streetAddress'];
+        $city = $newCollections['city'];
+        $state = $newCollections['state'];
+        $postalCode = $newCollections['postalCode'];
+        $phoneNum = $newCollections['phoneNumber'];
       }
-    }
   };
   ?>
   <div class="container-employee">
     <?php
     //
-      if (isset($_GET["id"])){
-        echo "<form class='row g-3 needs-validation' action='library/employeeController.php?form=$idvalue'method='POST' novalidate>";
-      }
-      else{
-        echo "<form class='row g-3 needs-validation' action='library/employeeController.php?flag=1' method='POST' novalidate>";
-      }
+      // if (isset($this->employee["id"])){
+      //   echo '<form class="row g-3 needs-validation" action= <?= CONTROLLERS ? > Employee/modifyEmployee method="POST" novalidate>';
+      // }
+      // else{
+      //   echo "<form class='row g-3 needs-validation' action='library/employeeController.php?flag=1' method='POST' novalidate>";
+      // }
     ?>
+    <form class="row g-3 needs-validation" id="formEditEmployee" data-employee=<?= $this->employee['id'] ?> action= "" method="POST" novalidate>
   <div class="col-md-6">
     <label for="validationCustom01" class="form-label">Name</label>
     <input type="text" class="form-control" id="validationCustom01" name="name" <?php if (isset($name)){echo "value='$name'";} ?> placeholder="name" required>
@@ -134,15 +135,15 @@
     </div>
   </div>
   <div class="col-2">
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit" name="submit" id="submitbtn">Submit</button>
   </div>
   <div class="col-2">
-    <button class="btn btn-secondary" type="submit">Return</button>
+    <button class="btn btn-secondary" type="button" name="return" id="returnbtn">Return </button>
   </div>
 </form>
 </div>
 <?php
-  require ("./../assets/html/footer.html");
+  require BASE_PATH . "/assets/templates/footer.php";
   
   ?>
 </body>
