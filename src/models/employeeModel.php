@@ -1,6 +1,33 @@
 <?php
 class EmployeeModel extends Model
 {
+
+    function addEmployee(array $employee)
+    {
+        $query = "INSERT INTO employees (" . implode(', ', array_keys($employee)) . ") VALUES " .
+            '(' . implode(', ', array_map(function ($key) {
+                return ":$key";
+            }, array_keys($employee))) . ')';
+
+        try {
+            $this->query($query, $employee, false);
+            return $this->query("SELECT * FROM employees WHERE phoneNumber = ?", [$employee['phoneNumber']])[0];
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
+
+    function deleteEmployee(string $id){
+
+        try{
+            $this->query("DELETE FROM employees WHERE id = ?", [$id],false);
+        }catch (PDOException $e) {
+            print_r($e);
+            return null;
+        }
+    }
+
+
     function getEmployees() //OK
     {
         try {
@@ -9,7 +36,7 @@ class EmployeeModel extends Model
             return null;
         }
     }
-    
+
     function getEmployee(string $id) //OK
     {
         try {
@@ -67,9 +94,7 @@ class EmployeeModel extends Model
     // $query->bindParam(7, $employee["phoneNumber"]);
      //$query->bindParam(7, $employee["id"]);
 
-    
 
-   
     public function  updateEmployee($employee, $id){
         // print_r($employee);
             $name=$employee["name"];

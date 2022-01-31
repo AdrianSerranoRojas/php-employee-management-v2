@@ -1,5 +1,4 @@
-const ENDPOINT =
-  document.getElementById("mainNav").dataset["base_url"] + "employee";
+const ENDPOINT = document.getElementById("mainNav").dataset["base_url"] + "employee";
 
 export const controller = {
   loadData: (filter) =>

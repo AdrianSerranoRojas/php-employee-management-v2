@@ -45,6 +45,7 @@
         $state = $newCollections['state'];
         $postalCode = $newCollections['postalCode'];
         $phoneNum = $newCollections['phoneNumber'];
+        $id = $newCollections['id'];
       }
   };
   ?>
@@ -73,7 +74,7 @@
     <label for="validationCustom02" class="hidden form-label">Last Name</label>
     <input type="text" class="form-control" id="validationCustom02" name="lastName" <?php if (isset($lastName)){echo "value='$lastName'";} ?> placeholder="last name" required>
 
-    <input type="text" class="form-control" name="id" <?php if (isset($lastName)){echo "value='$idvalue'";} ?> >
+    <input type="text" class="form-control" name="id" <?php if (isset($id)){echo "value='$id'";} ?> >
     <div class="valid-feedback">
       Looks good!
     </div>

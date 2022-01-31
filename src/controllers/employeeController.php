@@ -29,6 +29,18 @@ class EmployeeController extends Controller
 
 /** THE FOLLOWING METHODS WILL BE CALLED THROUGH AJAX */
 
+    function deleteEmployee($id)
+    {
+        $this->model->deleteEmployee($id);
+    }
+
+    function addEmployee()
+    {
+        $employee = json_decode(file_get_contents("php://input"), true);
+        $newEmployee = $this->model->addEmployee($employee);
+        echo json_encode($newEmployee);
+    }
+
     function getEmployees()
     {
         echo json_encode($this->model->getEmployees());

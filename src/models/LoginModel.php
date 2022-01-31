@@ -24,8 +24,8 @@ class LoginModel extends Model
                 $_SESSION['time'] = time();
                 $_SESSION['lifeTime'] = 60 * 10;
                 return true;
-            }
-        }
+            }else{$this->error = "Password incorrect";}
+        }else {$this->error = "No user with this email";}
         return false;
     }
 

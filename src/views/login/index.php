@@ -9,7 +9,7 @@
  <title>Login</title>
 </head>
 
-<body>
+<body id="mainNav" data-base_url="<?= BASE_URL ?>">
 
   <?php
   // that flag is to implement an alert message when you make a worng log in .
@@ -18,7 +18,7 @@
     }
 
   ?>
-  <div id="container-login">
+  <div id="container-login" >
   <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center" id="template-bg-3">
   
     <div class="card mb-6 bg-dark bg-gradient text-white">
@@ -45,9 +45,11 @@
   </div>
 </footer>
         </form>
-        <?php if (!empty($loginResult)) { ?>
-          <div class="text-danger"><?php echo $loginResult; ?></div>
-        <?php } ?>
+        <?php
+            if (isset($this->error)) {
+                echo "<p class='error-msg mt-5 mb-3 text-center'>{$this->error}</p>";
+            }
+            ?>
       </div>
     </div>
   </div>
