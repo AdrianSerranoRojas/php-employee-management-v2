@@ -22,7 +22,6 @@ class Database extends PDO{
     }
 
     }
-
     public function initDb()
     {
         $pdo = new PDO('mysql:host' . HOST, USERNAME, PASSWORD);

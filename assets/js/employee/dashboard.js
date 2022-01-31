@@ -69,7 +69,7 @@ $(() => {
         validate: { validator: "pattern", param: PHONE_REGX },
       },
 
-      { type: "control", editButton: false },
+      { type: "control" },
     ],
   });
 });

@@ -20,15 +20,13 @@ class EmployeeController extends Controller
     }
 
     function updateEmployee()
-    {   
-
-        //$employee = $_POST;
-        $formU = $_POST;
+    {
+        $employee = $_POST;
         print_r($employee);
-        $this->view->employee = $this->model->updateEmployee($employee);
+        $this->view->employee = $this->model->updateEmployee($employee, $employee["id"]);
         $this->view->render("employee/dashboard");
     }
-    
+
 /** THE FOLLOWING METHODS WILL BE CALLED THROUGH AJAX */
 
     function getEmployees()
@@ -42,7 +40,7 @@ class EmployeeController extends Controller
         if (!isset($employee['id'])) {
             $this->throw_error(401, "Bad Request");
         }
-        $newEmployee = $this->model->updateEmployee($employee);
+        $newEmployee = $this->model->updateEmployee2($employee);
         echo json_encode($newEmployee);
     }
 }
