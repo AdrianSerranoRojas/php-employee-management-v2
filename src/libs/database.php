@@ -39,23 +39,23 @@ class Database extends PDO{
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    function conn()
-    {
-        try {
-            $connection = "mysql:host=" . HOST . ";"
-                . "dbname=" . DBNAME . ";";
+    // function conn()
+    // {
+    //     try {
+    //         $connection = "mysql:host=" . HOST . ";"
+    //             . "dbname=" . DBNAME . ";";
     
-            $options = [
-                PDO::ATTR_ERRMODE           =>  PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_EMULATE_PREPARES  => FALSE,
-            ];
+    //         $options = [
+    //             PDO::ATTR_ERRMODE           =>  PDO::ERRMODE_EXCEPTION,
+    //             PDO::ATTR_EMULATE_PREPARES  => FALSE,
+    //         ];
     
-            $pdo = new PDO($connection, USERNAME, PASSWORD, $options);
+    //         $pdo = new PDO($connection, USERNAME, PASSWORD, $options);
     
-            return $pdo;
-        } catch (PDOException $e) {
-            require_once(VIEWS . "/error/error.php");
-        }
-    }
+    //         return $pdo;
+    //     } catch (PDOException $e) {
+    //         require_once(VIEWS . "/error/error.php");
+    //     }
+    // }
 
 }

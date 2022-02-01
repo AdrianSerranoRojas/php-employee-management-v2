@@ -19,11 +19,25 @@ class EmployeeController extends Controller
         $this->view->render("employee/employee");
     }
 
+    function show2()
+    {
+        $this->view->render("employee/employee");
+    }
+
     function updateEmployee()
     {
         $employee = $_POST;
+        echo "<pret>";
         print_r($employee);
-        $this->view->employee = $this->model->updateEmployee($employee, $employee["id"]);
+        echo "<pret>";
+        $this->view->employee = $this->model->updateEmployee2($employee);
+        $this->view->render("employee/dashboard");
+    }
+
+    function addEmployee2()
+    {
+        $employee = $_POST;
+        $newEmployee = $this->model->addEmployee($employee);
         $this->view->render("employee/dashboard");
     }
 
